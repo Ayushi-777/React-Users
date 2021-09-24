@@ -10,18 +10,18 @@ const Home = () => {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:3003/users");
+    const result = await axios.get("https://jsonplaceholder.typicode.com/users");
     setUser(result.data.reverse());
   };
 
   const deleteUser = async id => {
-    await axios.delete(`http://localhost:3003/users/${id}`);
+    await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
     loadUsers();
   };
 
   return (
     <div className="container">
-      <div className="py-4">
+      <div className="py-7">
         <h1>Home Page</h1>
         <table class="table border shadow">
           <thead class="thead-dark">
@@ -30,6 +30,8 @@ const Home = () => {
               <th scope="col">Name</th>
               <th scope="col">User Name</th>
               <th scope="col">Email</th>
+              <th scope="col">phone</th>
+              <th scope="col">website</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -40,6 +42,9 @@ const Home = () => {
                 <td>{user.name}</td>
                 <td>{user.username}</td>
                 <td>{user.email}</td>
+                <td>{user.phone}</td>
+                <td>{user.website}</td>
+                
                 <td>
                   <Link class="btn btn-primary mr-2" to={`/users/${user.id}`}>
                     View
@@ -51,11 +56,13 @@ const Home = () => {
                     Edit
                   </Link>
                   <Link
-                    class="btn btn-danger"
+                    class="btn btn-danger "
                     onClick={() => deleteUser(user.id)}
                   >
                     Delete
                   </Link>
+                  <Link className="btn btn-info mt-2 " to="/users/add">Add User</Link>
+                  
                 </td>
               </tr>
             ))}

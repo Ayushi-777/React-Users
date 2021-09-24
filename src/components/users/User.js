@@ -15,7 +15,7 @@ const User = () => {
     loadUser();
   }, []);
   const loadUser = async () => {
-    const res = await axios.get(`http://localhost:3003/users/${id}`);
+    const res = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`);
     setUser(res.data);
   };
   return (
@@ -25,8 +25,8 @@ const User = () => {
       </Link>
       <h1 className="display-4">User Id: {id}</h1>
       <hr />
-      <ul className="list-group w-50">
-        <li className="list-group-item">name: {user.name}</li>
+      <ul className="list-group w-50 text-center ">
+        <li className="list-group-item ">name: {user.name}</li>
         <li className="list-group-item">user name: {user.username}</li>
         <li className="list-group-item">email: {user.email}</li>
         <li className="list-group-item">phone: {user.phone}</li>
